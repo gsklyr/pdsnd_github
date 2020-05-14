@@ -1,15 +1,24 @@
 ### Date created
-Include the date you created this project and README file.
+05/13/2020 (mm/dd/yyyy)
 
 ### Project Title
-Replace the Project Title
+Analysis of Bikeshare Data Using R
 
 ### Description
-Describe what your project is about and what it does
+In this project, bikeshare data from 3 cities is analyzed based on bikers age,
+gender, ride duration, and time of the day of the rides.
 
 ### Files used
-Include the files used
+Data Files:
+washington.csv
+new_york_city.csv
+chicago.csv
+
+Code:
+Explore_bikeshare_data.r
+
+Entire Project Markup:
+Explore_bikeshare_data.html
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
-
+Thanks to Udacity
