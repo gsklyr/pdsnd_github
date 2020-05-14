@@ -55,21 +55,21 @@ qplot(data=ny_age, x= ny_age$Age, binwidth=3, ylab="Count [#]",
     main="NY Age Dist. by Gender") +
     scale_x_discrete(limits=seq(min_age, max_age, 5), name="Age [years]") +
     facet_wrap(~Gender)
-qplot(data=chi_age, x= chi_age$Age, binwidth=3, ylab="Count [#]", 
+qplot(data=chi_age, x= chi_age$Age, binwidth=3, ylab="Count [#]",
     main="Chicago Age Dist. by Gender") +
-    scale_x_discrete(limits=seq(min_age, max_age, 5), name="Age [years]") + 
+    scale_x_discrete(limits=seq(min_age, max_age, 5), name="Age [years]") +
     facet_wrap(~Gender)
 
-# Q1 SUMMARY 
-# (Used: 
+# Q1 SUMMARY
+# (Used:
 # [data summary, derived columns, filtering NA, univariate histogram plot, faceting])
 # In summary, we can see very similar age distributions across both cities and gender
 # groups.
 # There is a very low user count in the teen and young 20s group.  The counts sharply
-# pick up for 
-# mid and late 20s groups and peaks at around 30 or 35 pretty much consistent with 
+# pick up for
+# mid and late 20s groups and peaks at around 30 or 35 pretty much consistent with
 # the medians discovered
-# in the summary stage.  The user count starts to really taper off after 40-45 yo.  
+# in the summary stage.  The user count starts to really taper off after 40-45 yo.
 # Really no crazy insight
 # here as far as gender goes.  We basically see a unimodal right-skewed distribution
 # of age among the users.
@@ -109,7 +109,7 @@ get_time_label <- function(time) {
 ny = cbind(ny, TOD=NA)
 chi = cbind(chi, TOD=NA)
 wash = cbind(wash, TOD=NA)
-samples = max(c(nrow(ny), nrow(chi), nrow(wash)))
+samples = 1000
 print(samples)
 for (i in seq(from=1, to=samples, by=1)) { # Loop over times
     # Convert timestamp to hour of the day
@@ -137,44 +137,44 @@ head(wash[,c(2, 8)], 10)
 
 # Plot!
 ny = subset(ny, ny$TOD != "NA")
-qplot(data=ny, x= ny$TOD, geom="bar", ylab="Count [#]", xlab="TOD category", 
-      main="NY TOD Dist.") 
+qplot(data=ny, x= ny$TOD, geom="bar", ylab="Count [#]", xlab="TOD category",
+      main="NY TOD Dist.")
 chi = subset(chi, chi$TOD != "NA")
-qplot(data=chi, x= chi$TOD, geom="bar", ylab="Count [#]", xlab="TOD category", 
-      main="CHI TOD Dist.") 
+qplot(data=chi, x= chi$TOD, geom="bar", ylab="Count [#]", xlab="TOD category",
+      main="CHI TOD Dist.")
 wash = subset(wash, wash$TOD != "NA")
-qplot(data=wash, x= wash$TOD, geom="bar", ylab="Count [#]", xlab="TOD category", 
-      main="WASH TOD Dist.") 
+qplot(data=wash, x= wash$TOD, geom="bar", ylab="Count [#]", xlab="TOD category",
+      main="WASH TOD Dist.")
 
-# Q2 SUMMARY 
-# (Used: 
+# Q2 SUMMARY
+# (Used:
 # [conditional statements, loops, custom function refactoring, barplots])
-# Interesting!  People in NY and Chicago are far less likely to take a 
+# Interesting!  People in NY and Chicago are far less likely to take a
 #night ride than people
-# in DC.  Is that because of crime rates and the safety issue?  Is there a 
-#problem with our 
+# in DC.  Is that because of crime rates and the safety issue?  Is there a
+#problem with our
 # bikeshare service?  Who knows.  In both NY and Chicago afternoon rides are
-# preferred whereas 
-# morning rides are preferred in DC.  Those distributions were worth 
+# preferred whereas
+# morning rides are preferred in DC.  Those distributions were worth
 #investigating (unlike in my
-# attempt in question 1) because that could help the company customize 
+# attempt in question 1) because that could help the company customize
 # maintenance times for each
-# city.  Sharing this data with government can help the city better 
+# city.  Sharing this data with government can help the city better
 #understands transportation
 # trends in their population.
 
 # Your solution code goes here
 ny = read.csv('new_york_city.csv')
 ny = subset(ny, ny$Birth.Year > 1945 & ny$Birth.Year < 2000)
-ggplot(aes(x=ny$Birth.Year, y=ny$Trip.Duration), data=ny, 
-  main="Trip Duration vs. Age") + ylab("time") + 
-  ylim(100, 5000) + 
+ggplot(aes(x=ny$Birth.Year, y=ny$Trip.Duration), data=ny,
+  main="Trip Duration vs. Age") + ylab("time") +
+  ylim(100, 5000) +
   geom_point(alpha=.075, color='Red', position = position_jitter(h=0)) +
-  geom_line(stat = 'summary', fun.y=median) + 
+  geom_line(stat = 'summary', fun.y=median) +
   scale_x_discrete(limits=seq(1930, 2020, 5), name="Year of Birth")
 
 # Q2 SUMMARY (Used: [ggplot syntax, bi-variate analysis])
-# Trip duration seems to not vary too much among age groups.  The thickness of 
+# Trip duration seems to not vary too much among age groups.  The thickness of
 # the plot
 # is consistent with previous findings where age was concentrated around 30 yo.
 
